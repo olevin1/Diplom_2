@@ -1,7 +1,7 @@
 package domain.order;
 
-public final class OrderCreateDto {
-    String[] ingredients;
+public class OrderCreateDto {
+    private String[] ingredients;
 
     public OrderCreateDto(final String[] ingredients) {
         this.ingredients = ingredients;

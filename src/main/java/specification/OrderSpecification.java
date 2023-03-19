@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public final class OrderSpecification extends BasicSpecification {
+public class OrderSpecification extends BasicSpecification {
     private static final String CREATE_ORDER_PATH = "/api/orders";
     private static final String GET_ORDERS_FOR_USER_PATH = "/api/orders";
 

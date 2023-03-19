@@ -9,7 +9,7 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-public final class UserSpecification extends BasicSpecification {
+public class UserSpecification extends BasicSpecification {
     private static final String CREATE_USER_PATH = "/api/auth/register";
     private static final String AUTH_USER_PATH = "/api/auth/login";
     private static final String UPDATE_USER_PATH = "/api/auth/user";
