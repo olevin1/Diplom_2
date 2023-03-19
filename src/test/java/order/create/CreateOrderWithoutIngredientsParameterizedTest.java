@@ -1,7 +1,5 @@
 package order.create;
 
-import constants.ConstantsOrderTestData;
-import constants.ConstantsUserTestData;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -15,12 +13,14 @@ import org.junit.runners.Parameterized;
 import specification.OrderSpecification;
 import specification.UserSpecification;
 
+import static data.OrderTestData.EMPTY_INGREDIENTS;
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
-public class CreateOrderWithoutIngredientsParameterizedTest implements ConstantsOrderTestData, ConstantsUserTestData {
+public class CreateOrderWithoutIngredientsParameterizedTest {
     private final static String MESSAGE_NO_INGREDIENTS = "Ingredient ids must be provided";
 
     private final UserSpecification userSpecification = new UserSpecification();

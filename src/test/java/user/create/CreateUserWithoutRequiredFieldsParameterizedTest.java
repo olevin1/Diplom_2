@@ -1,6 +1,5 @@
 package user.create;
 
-import constants.ConstantsUserTestData;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import io.qameta.allure.Description;
@@ -11,12 +10,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import specification.UserSpecification;
 
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
-public class CreateUserWithoutRequiredFieldsParameterizedTest implements ConstantsUserTestData {
+public class CreateUserWithoutRequiredFieldsParameterizedTest {
     private final static String MESSAGE_NO_REQUIRED_FIELDS = "Email, password and name are required fields";
     private final String email;
     private final String password;

@@ -1,6 +1,5 @@
 package user.update;
 
-import constants.ConstantsUserTestData;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import domain.user.UserUpdateDto;
@@ -13,12 +12,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import specification.UserSpecification;
 
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
-public class UpdateUserParameterizedTest implements ConstantsUserTestData {
+public class UpdateUserParameterizedTest {
     private final String email;
     private final String password;
     private final String name;

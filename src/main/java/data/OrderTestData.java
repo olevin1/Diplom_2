@@ -1,8 +1,8 @@
-package constants;
+package data;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public interface ConstantsOrderTestData {
+public final class OrderTestData {
     /**
      * Ингредиенты для бургеров
      */
@@ -34,6 +34,7 @@ public interface ConstantsOrderTestData {
             MEAT_OF_IMMORTAL_CLAMS_PROTOSTOMIA,
             CRISPY_MINERAL_RINGS
     };
+
     public static final String[] BURGER_SECOND_CHOICE = {
             FLUORESCENT_BUN,
             SAUCE_SPECIAL_SPACE_SAUCE,
@@ -53,6 +54,9 @@ public interface ConstantsOrderTestData {
             MINI_SALAD_EXO_PLANTAGO,
             CHEESE_WITH_ASTEROID_MOLD
     };
-    public final static String[] EMPTY_INGREDIENTS = {};
-    public final static String[] INVALID_INGREDIENTS = {RandomStringUtils.randomAlphanumeric(10, 15)};
+    public static final String[] EMPTY_INGREDIENTS = {};
+    public static final String[] INVALID_INGREDIENTS = {RandomStringUtils.randomAlphanumeric(10, 15)};
+
+    private OrderTestData() {
+    }
 }

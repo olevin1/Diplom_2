@@ -1,6 +1,6 @@
 package domain.order;
 
-public class OrderCreateDto {
+public final class OrderCreateDto {
     String[] ingredients;
 
     public OrderCreateDto(final String[] ingredients) {

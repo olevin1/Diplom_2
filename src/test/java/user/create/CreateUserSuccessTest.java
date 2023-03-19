@@ -1,6 +1,5 @@
 package user.create;
 
-import constants.ConstantsUserTestData;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import io.qameta.allure.Description;
@@ -9,10 +8,11 @@ import org.junit.After;
 import org.junit.Test;
 import specification.UserSpecification;
 
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.is;
 
-public class CreateUserSuccessTest implements ConstantsUserTestData {
+public class CreateUserSuccessTest {
     private final UserSpecification specification = new UserSpecification();
 
     @Test

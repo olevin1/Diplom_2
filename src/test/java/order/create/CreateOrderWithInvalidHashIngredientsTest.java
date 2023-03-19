@@ -1,7 +1,5 @@
 package order.create;
 
-import constants.ConstantsOrderTestData;
-import constants.ConstantsUserTestData;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -13,9 +11,11 @@ import org.junit.Test;
 import specification.OrderSpecification;
 import specification.UserSpecification;
 
+import static data.OrderTestData.INVALID_INGREDIENTS;
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_INTERNAL_SERVER_ERROR;
 
-public class CreateOrderWithInvalidHashIngredientsTest implements ConstantsOrderTestData, ConstantsUserTestData {
+public class CreateOrderWithInvalidHashIngredientsTest {
     private final UserSpecification userSpecification = new UserSpecification();
     private final OrderSpecification orderSpecification = new OrderSpecification();
 

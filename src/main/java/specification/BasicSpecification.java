@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public abstract class BasicSpecification {
-    protected final String BASE_URL = "https://stellarburgers.nomoreparties.site";
+    protected static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
 
     protected RequestSpecification baseSpec() {
         return new RequestSpecBuilder()

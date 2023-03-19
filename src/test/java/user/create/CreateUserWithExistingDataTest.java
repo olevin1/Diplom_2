@@ -1,6 +1,5 @@
 package user.create;
 
-import constants.ConstantsUserTestData;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import io.qameta.allure.Description;
@@ -10,11 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 import specification.UserSpecification;
 
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class CreateUserWithExistingDataTest implements ConstantsUserTestData {
+public class CreateUserWithExistingDataTest {
     private final static String MESSAGE_DATA_EXISTS = "User already exists";
     private final UserSpecification specification = new UserSpecification();
 

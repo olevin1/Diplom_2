@@ -1,6 +1,6 @@
 package domain.user;
 
-public class UserUpdateDto {
+public final class UserUpdateDto {
     private String email;
     private String password;
     private String name;

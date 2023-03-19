@@ -1,7 +1,5 @@
 package order.create;
 
-import constants.ConstantsOrderTestData;
-import constants.ConstantsUserTestData;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -15,11 +13,13 @@ import org.junit.runners.Parameterized;
 import specification.OrderSpecification;
 import specification.UserSpecification;
 
+import static data.OrderTestData.*;
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
-public class CreateOrderWithIngredientsParameterizedTest implements ConstantsOrderTestData, ConstantsUserTestData {
+public class CreateOrderWithIngredientsParameterizedTest {
     private final UserSpecification userSpecification = new UserSpecification();
     private final OrderSpecification orderSpecification = new OrderSpecification();
     private final String[] ingredients;

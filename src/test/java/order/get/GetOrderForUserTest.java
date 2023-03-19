@@ -1,7 +1,5 @@
 package order.get;
 
-import constants.ConstantsOrderTestData;
-import constants.ConstantsUserTestData;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -13,12 +11,14 @@ import org.junit.Test;
 import specification.OrderSpecification;
 import specification.UserSpecification;
 
+import static data.OrderTestData.*;
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class GetOrderForUserTest implements ConstantsOrderTestData, ConstantsUserTestData {
+public class GetOrderForUserTest {
     private final static String MESSAGE_GET_ORDER_WITHOUT_AUTH = "You should be authorised";
     private final UserSpecification userSpecification = new UserSpecification();
     private final OrderSpecification orderSpecification = new OrderSpecification();

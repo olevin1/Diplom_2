@@ -1,6 +1,6 @@
 package domain.user;
 
-public class UserCreateDto {
+public final class UserCreateDto {
     private String email;
     private String password;
     private String name;

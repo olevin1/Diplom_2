@@ -1,6 +1,5 @@
 package user.login;
 
-import constants.ConstantsUserTestData;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import io.qameta.allure.Description;
@@ -12,12 +11,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import specification.UserSpecification;
 
+import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
-public class LoginWithIncorrectDataParameterizedTest implements ConstantsUserTestData {
+public class LoginWithIncorrectDataParameterizedTest {
     private final static String MESSAGE_INCORRECT_DATA = "email or password are incorrect";
     private final String email;
     private final String password;
