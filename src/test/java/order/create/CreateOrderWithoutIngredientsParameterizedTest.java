@@ -1,5 +1,7 @@
 package order.create;
 
+import client.OrderClient;
+import client.UserClient;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -10,8 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import specification.OrderSpecification;
-import specification.UserSpecification;
 
 import static data.OrderTestData.EMPTY_INGREDIENTS;
 import static data.UserTestData.*;
@@ -22,11 +22,9 @@ import static org.hamcrest.Matchers.is;
 @RunWith(Parameterized.class)
 public class CreateOrderWithoutIngredientsParameterizedTest {
     private final static String MESSAGE_NO_INGREDIENTS = "Ingredient ids must be provided";
-
-    private final UserSpecification userSpecification = new UserSpecification();
-    private final OrderSpecification orderSpecification = new OrderSpecification();
+    private final UserClient userSpecification = new UserClient();
+    private final OrderClient orderSpecification = new OrderClient();
     private final String[] ingredients;
-
 
     public CreateOrderWithoutIngredientsParameterizedTest(final String[] ingredients) {
         this.ingredients = ingredients;
@@ -53,9 +51,9 @@ public class CreateOrderWithoutIngredientsParameterizedTest {
         orderSpecification.createOrderWithAuth(new OrderCreateDto(ingredients), accessToken)
                 .then()
                 .assertThat()
-                .body("success", is(false))
+                .statusCode(SC_BAD_REQUEST)
                 .and()
-                .statusCode(SC_BAD_REQUEST);
+                .body("success", is(false));
     }
 
     @Test
@@ -65,11 +63,11 @@ public class CreateOrderWithoutIngredientsParameterizedTest {
         orderSpecification.createOrderWithoutAuth(new OrderCreateDto())
                 .then()
                 .assertThat()
+                .statusCode(SC_BAD_REQUEST)
+                .and()
                 .body("success", is(false))
                 .and()
-                .body("message", equalTo(MESSAGE_NO_INGREDIENTS))
-                .and()
-                .statusCode(SC_BAD_REQUEST);
+                .body("message", equalTo(MESSAGE_NO_INGREDIENTS));
     }
 
     @After

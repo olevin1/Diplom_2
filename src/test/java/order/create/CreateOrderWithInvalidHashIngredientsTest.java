@@ -1,5 +1,7 @@
 package order.create;
 
+import client.OrderClient;
+import client.UserClient;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -8,17 +10,14 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import specification.OrderSpecification;
-import specification.UserSpecification;
 
 import static data.OrderTestData.INVALID_INGREDIENTS;
 import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_INTERNAL_SERVER_ERROR;
 
 public class CreateOrderWithInvalidHashIngredientsTest {
-    private final UserSpecification userSpecification = new UserSpecification();
-    private final OrderSpecification orderSpecification = new OrderSpecification();
-
+    private final UserClient userSpecification = new UserClient();
+    private final OrderClient orderSpecification = new OrderClient();
 
     @Before
     public void setUp() {

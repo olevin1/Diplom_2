@@ -1,4 +1,4 @@
-package specification;
+package client;
 
 import domain.order.OrderCreateDto;
 import io.qameta.allure.Step;
@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class OrderSpecification extends BasicSpecification {
+public class OrderClient extends BaseClient {
     private static final String CREATE_ORDER_PATH = "/api/orders";
     private static final String GET_ORDERS_FOR_USER_PATH = "/api/orders";
 

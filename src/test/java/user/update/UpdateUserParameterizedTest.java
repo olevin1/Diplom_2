@@ -1,5 +1,6 @@
 package user.update;
 
+import client.UserClient;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import domain.user.UserUpdateDto;
@@ -10,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import specification.UserSpecification;
 
 import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -22,8 +22,7 @@ public class UpdateUserParameterizedTest {
     private final String email;
     private final String password;
     private final String name;
-    private final UserSpecification specification = new UserSpecification();
-
+    private final UserClient specification = new UserClient();
 
     public UpdateUserParameterizedTest(final String email, final String password, final String name) {
         this.email = email;
@@ -54,9 +53,9 @@ public class UpdateUserParameterizedTest {
         specification.updateUserWithAuth(new UserUpdateDto(email, password, name), accessToken)
                 .then()
                 .assertThat()
-                .body("success", is(true))
+                .statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .body("success", is(true));
     }
 
     @Test
@@ -66,9 +65,9 @@ public class UpdateUserParameterizedTest {
         specification.updateUserWithoutAuth(new UserUpdateDto(email, password, name))
                 .then()
                 .assertThat()
-                .body("success", is(false))
+                .statusCode(SC_UNAUTHORIZED)
                 .and()
-                .statusCode(SC_UNAUTHORIZED);
+                .body("success", is(false));
     }
 
     @After

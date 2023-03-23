@@ -1,5 +1,7 @@
 package order.create;
 
+import client.OrderClient;
+import client.UserClient;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -10,8 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import specification.OrderSpecification;
-import specification.UserSpecification;
 
 import static data.OrderTestData.*;
 import static data.UserTestData.*;
@@ -20,8 +20,8 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(Parameterized.class)
 public class CreateOrderWithIngredientsParameterizedTest {
-    private final UserSpecification userSpecification = new UserSpecification();
-    private final OrderSpecification orderSpecification = new OrderSpecification();
+    private final UserClient userSpecification = new UserClient();
+    private final OrderClient orderSpecification = new OrderClient();
     private final String[] ingredients;
 
     public CreateOrderWithIngredientsParameterizedTest(final String[] ingredients) {
@@ -50,9 +50,9 @@ public class CreateOrderWithIngredientsParameterizedTest {
         String accessToken = userSpecification.getAccessToken(new UserLoginDto(RANDOM_STRING_EMAIL, RANDOM_STRING_PASSWORD));
         orderSpecification.createOrderWithAuth(new OrderCreateDto(ingredients), accessToken)
                 .then().assertThat()
-                .body("success", is(true))
+                .statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .body("success", is(true));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class CreateOrderWithIngredientsParameterizedTest {
         orderSpecification.createOrderWithoutAuth(new OrderCreateDto(ingredients))
                 .then()
                 .assertThat()
-                .body("success", is(true))
+                .statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .body("success", is(true));
     }
 
     @After

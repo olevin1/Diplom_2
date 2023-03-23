@@ -1,5 +1,6 @@
 package user.login;
 
+import client.UserClient;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
 import io.qameta.allure.Description;
@@ -9,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import specification.UserSpecification;
 
 import static data.UserTestData.*;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
@@ -21,7 +21,7 @@ public class LoginWithIncorrectDataParameterizedTest {
     private final static String MESSAGE_INCORRECT_DATA = "email or password are incorrect";
     private final String email;
     private final String password;
-    private final UserSpecification specification = new UserSpecification();
+    private final UserClient specification = new UserClient();
 
     public LoginWithIncorrectDataParameterizedTest(final String email, final String password) {
         this.email = email;
@@ -53,11 +53,11 @@ public class LoginWithIncorrectDataParameterizedTest {
         specification.loginUser(new UserLoginDto(email, password))
                 .then()
                 .assertThat()
-                .body("message", equalTo(MESSAGE_INCORRECT_DATA))
+                .statusCode(SC_UNAUTHORIZED)
                 .and()
                 .body("success", is(false))
                 .and()
-                .statusCode(SC_UNAUTHORIZED);
+                .body("message", equalTo(MESSAGE_INCORRECT_DATA));
     }
 
     @After

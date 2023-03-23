@@ -1,5 +1,7 @@
 package order.get;
 
+import client.OrderClient;
+import client.UserClient;
 import domain.order.OrderCreateDto;
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -8,8 +10,6 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import specification.OrderSpecification;
-import specification.UserSpecification;
 
 import static data.OrderTestData.*;
 import static data.UserTestData.*;
@@ -20,8 +20,8 @@ import static org.hamcrest.Matchers.is;
 
 public class GetOrderForUserTest {
     private final static String MESSAGE_GET_ORDER_WITHOUT_AUTH = "You should be authorised";
-    private final UserSpecification userSpecification = new UserSpecification();
-    private final OrderSpecification orderSpecification = new OrderSpecification();
+    private final UserClient userSpecification = new UserClient();
+    private final OrderClient orderSpecification = new OrderClient();
 
     @Before
     public void setUp() {
@@ -40,9 +40,9 @@ public class GetOrderForUserTest {
         orderSpecification.getOrderForUserWithAuth(accessToken)
                 .then()
                 .assertThat()
-                .body("success", is(true))
+                .statusCode(SC_OK)
                 .and()
-                .statusCode(SC_OK);
+                .body("success", is(true));
     }
 
     @Test
@@ -52,11 +52,11 @@ public class GetOrderForUserTest {
         orderSpecification.getOrderForUserWithoutAuth()
                 .then()
                 .assertThat()
+                .statusCode(SC_UNAUTHORIZED)
+                .and()
                 .body("success", is(false))
                 .and()
-                .body("message", equalTo(MESSAGE_GET_ORDER_WITHOUT_AUTH))
-                .and()
-                .statusCode(SC_UNAUTHORIZED);
+                .body("message", equalTo(MESSAGE_GET_ORDER_WITHOUT_AUTH));
     }
 
     @After

@@ -1,4 +1,4 @@
-package specification;
+package client;
 
 import domain.user.UserCreateDto;
 import domain.user.UserLoginDto;
@@ -7,9 +7,10 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
+import static org.apache.http.HttpStatus.SC_ACCEPTED;
 import static org.hamcrest.Matchers.is;
 
-public class UserSpecification extends BasicSpecification {
+public class UserClient extends BaseClient {
     private static final String CREATE_USER_PATH = "/api/auth/register";
     private static final String AUTH_USER_PATH = "/api/auth/login";
     private static final String UPDATE_USER_PATH = "/api/auth/user";
@@ -77,8 +78,9 @@ public class UserSpecification extends BasicSpecification {
                     .and()
                     .delete(DELETE_USER_PATH)
                     .then()
-                    .assertThat().body("success", is(true))
-                    .statusCode(202);
+                    .statusCode(SC_ACCEPTED)
+                    .and()
+                    .assertThat().body("success", is(true));
         }
     }
 }
